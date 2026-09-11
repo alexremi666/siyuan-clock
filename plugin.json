@@ -1,0 +1,25 @@
+{
+    "name": "siyuan-clock",
+    "author": "YanDujiang",
+    "url": "https://github.com/alexremi666/siyuan-clock",
+    "version": "1.4.5",
+    "minAppVersion": "3.0.0",
+    "backends": ["all"],
+    "frontends": ["all"],
+    "disabledInPublish": false,
+    "displayName": {
+        "default": "SiYuan Clock Plugin",
+        "zh-CN": "时钟"
+    },
+    "description": {
+        "default": "Display a clock tab with current time, date, weekday and Chinese lunar date. All frontends supported, colors follow SiYuan theme. This project was generated with AI assistance.",
+        "zh-CN": "以标签页显示时钟：大号当前时间、日期与星期、农历（干支生肖）。全端适配，配色跟随思源主题。本项目由 AI 生成。"
+    },
+    "readme": {
+        "default": "README.md",
+        "zh-CN": "README.zh-CN.md"
+    },
+    "icon": "icon.png",
+    "preview": "preview.png",
+    "keywords": ["clock", "时钟", "农历", "lunar", "时间"]
+}

@@ -1,0 +1,81 @@
+/* 时钟（SiYuan Clock Plugin）—— 配色全部取自思源主题 CSS 变量，自动跟随明暗主题 */
+
+.siyuan-clock {
+    --clock-time-size: 128px;
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    background-color: var(--b3-theme-background);
+    color: var(--b3-theme-on-background);
+}
+
+.siyuan-clock__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding: 32px 24px;
+    row-gap: calc(var(--clock-time-size) * 0.14);
+}
+
+/* 移动端全屏弹窗：铺满整个屏幕 */
+.siyuan-clock--dialog {
+    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+/* 第一行：当前时间，字号最大，独占一行 */
+.siyuan-clock__time {
+    font-size: min(var(--clock-time-size), 26vw);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--b3-theme-on-background);
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* 第二行：日期 + 星期，字号缩小、颜色变浅 */
+.siyuan-clock__sub {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    column-gap: 1.4em;
+    row-gap: 0.2em;
+    font-size: min(calc(var(--clock-time-size) * 0.26), 7vw);
+    line-height: 1.35;
+    color: var(--b3-theme-on-background);
+    opacity: 0.72;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* 第三行：农历，字号最小、颜色最浅 */
+.siyuan-clock__lunar {
+    font-size: min(calc(var(--clock-time-size) * 0.19), 5.4vw);
+    line-height: 1.35;
+    color: var(--b3-theme-on-background);
+    opacity: 0.48;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* 移动端：紧凑一点，字号基准为桌面端的一半（64px） */
+@media (max-width: 640px) {
+    .siyuan-clock {
+        --clock-time-size: 64px;
+    }
+
+    .siyuan-clock__wrap {
+        padding: 20px 12px;
+    }
+}
