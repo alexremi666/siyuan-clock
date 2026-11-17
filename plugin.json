@@ -1,9 +1,9 @@
 {
     "name": "siyuan-clock",
-    "author": "YanDujiang",
+    "author": "YanDuJiang",
     "url": "https://github.com/alexremi666/siyuan-clock",
-    "version": "1.4.5",
-    "minAppVersion": "3.0.0",
+    "version": "1.5.0",
+    "minAppVersion": "3.8.5",
     "backends": ["all"],
     "frontends": ["all"],
     "disabledInPublish": false,
