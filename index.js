@@ -148,7 +148,10 @@ function lunarDayName(day) {
  * @returns {string}
  */
 function formatLunar(date) {
-    const lunar = solarToLunar(date.getFullYear(), date.getMonth() + 1, date.getDate());
+    const year = date.getFullYear();
+    // 数据表仅覆盖 1900—2100，越界不换算，避免位运算出现 NaN
+    if (year < 1900 || year > 2100) return "";
+    const lunar = solarToLunar(year, date.getMonth() + 1, date.getDate());
     const idx = lunar.year - 4;
     const stem = HEAVENLY_STEMS[((idx % 10) + 10) % 10];
     const branch = EARTHLY_BRANCHES[((idx % 12) + 12) % 12];
@@ -316,6 +319,8 @@ class ClockPlugin extends Plugin {
 
     renderTab(model) {
         const element = model.element;
+        // 重复渲染前先清理该元素上残留的旧定时器，避免泄漏
+        this.stopTicker(element);
         element.classList.add("siyuan-clock");
         element.innerHTML = `
 <div class="siyuan-clock__wrap" role="timer" aria-live="off">
@@ -333,6 +338,9 @@ class ClockPlugin extends Plugin {
     }
 
     startTicker(wrap) {
+        const element = wrap.closest(".siyuan-clock");
+        // 覆盖旧句柄前先清掉旧定时器
+        this.stopTicker(element);
         const update = () => {
             if (wrap.isConnected) {
                 this.tick(wrap);
@@ -344,7 +352,7 @@ class ClockPlugin extends Plugin {
             update();
             handle.interval = setInterval(update, 1000);
         }, 1000 - (Date.now() % 1000) + 20);
-        this.tabTimers.set(wrap.closest(".siyuan-clock"), handle);
+        this.tabTimers.set(element, handle);
     }
 
     stopTicker(element) {
